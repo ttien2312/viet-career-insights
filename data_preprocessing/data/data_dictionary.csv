@@ -1,0 +1,37 @@
+﻿table,column,data_type,description
+jobs_clean,job_title,object,Tên vị trí tuyển dụng
+jobs_clean,location,object,Địa điểm tuyển dụng gốc
+jobs_clean,country,object,Quốc gia tuyển dụng
+jobs_clean,qualifications,object,"Yêu cầu trình độ, bằng cấp"
+jobs_clean,technical_skills,object,Danh sách kỹ năng chuyên môn gốc
+jobs_clean,soft_skills,object,Danh sách kỹ năng mềm gốc
+jobs_clean,languages_required,object,Yêu cầu ngoại ngữ
+jobs_clean,experience_required,object,Kinh nghiệm yêu cầu dạng văn bản
+jobs_clean,salary,object,Thông tin lương gốc
+jobs_clean,contract_type,object,Loại hợp đồng lao động
+jobs_clean,working_hours,object,Thời gian làm việc
+jobs_clean,benefits,object,"Quyền lợi, phúc lợi"
+jobs_clean,description,object,Mô tả công việc
+jobs_clean,requirements_text,object,Nội dung yêu cầu tuyển dụng
+jobs_clean,category,object,Mã nhóm nghề gốc
+jobs_clean,salary_min,int64,Cận dưới lương trong dữ liệu gốc
+jobs_clean,salary_max,int64,Cận trên lương trong dữ liệu gốc
+jobs_clean,salary_avg,object,Thông tin lương trung bình gốc
+jobs_clean,experience_months,int64,Kinh nghiệm quy đổi sang tháng
+jobs_clean,experience_group,object,Nhóm mức kinh nghiệm
+jobs_clean,salary_min_million,float64,"Cận dưới lương sau chuẩn hóa, triệu đồng"
+jobs_clean,salary_max_million,float64,"Cận trên lương sau chuẩn hóa, triệu đồng"
+jobs_clean,salary_status,object,Trạng thái thông tin lương
+jobs_clean,salary_midpoint_million,float64,"Trung điểm khoảng lương, triệu đồng"
+jobs_clean,salary_outlier_flag,bool,Đánh dấu lương tối đa vượt 100 triệu
+jobs_clean,salary_usable,bool,Đánh dấu lương có thể sử dụng theo quy tắc xử lý
+jobs_clean,salary_for_analysis,float64,Giá trị lương dùng cho phân tích
+jobs_clean,location_clean,object,Địa điểm sau chuẩn hóa
+jobs_clean,category_clean,object,Tên nhóm nghề đã chuẩn hóa
+jobs_clean,technical_skills_clean,object,Kỹ năng chuyên môn được nối bằng dấu |
+jobs_clean,soft_skills_clean,object,Kỹ năng mềm được nối bằng dấu |
+jobs_clean,job_id,object,Mã định danh của tin tuyển dụng
+skills_table,job_id,object,Mã định danh của tin tuyển dụng
+skills_table,category_clean,object,Tên nhóm nghề đã chuẩn hóa
+skills_table,skill,object,Một kỹ năng riêng lẻ
+skills_table,skill_type,object,Loại kỹ năng: chuyên môn hoặc kỹ năng mềm
