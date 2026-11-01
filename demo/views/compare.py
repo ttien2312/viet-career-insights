@@ -20,10 +20,10 @@ def render():
     ui.hero("So sánh", "Đặt 2–3 nhóm nghề cạnh nhau",
             "Mỗi nhóm nghề giữ nguyên một màu trên mọi biểu đồ của trang. "
             "Bộ lọc địa điểm, kinh nghiệm, từ khóa ở thanh bên vẫn được áp dụng.")
-    if "cmp_cats" not in st.session_state:
-        st.session_state["cmp_cats"] = [c for c in DEFAULT if c in cats_all][:3]
+    state.keep("cmp_cats", [c for c in DEFAULT if c in cats_all][:3])
     cats = st.multiselect("Nhóm nghề cần so sánh (tối đa 3)", cats_all, key="cmp_cats", max_selections=3,
                           format_func=du.short)
+    state.remember("cmp_cats")
     ui.filter_chips(f, applies="no_cat")
     if len(cats) < 2:
         st.info("Hãy chọn ít nhất 2 nhóm nghề để so sánh.")

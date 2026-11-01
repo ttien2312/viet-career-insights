@@ -117,5 +117,22 @@ def top_skills(f: dict | None = None, cat: str | None = None, skill_type: str = 
 def go_profile(cat: str) -> None:
     """Mở trang Hồ sơ nghề cho nhóm nghề được chọn."""
     st.session_state["profile_cat"] = cat
+    st.session_state["_keep_profile_cat"] = cat
     if "profile" in PAGES:
         st.switch_page(PAGES["profile"])
+
+
+# ----------------------------------------------------------------------------
+# Giữ lựa chọn của người dùng khi chuyển trang
+# (Streamlit xoá trạng thái của ô nhập không hiển thị ở trang hiện tại)
+# ----------------------------------------------------------------------------
+def keep(key: str, default) -> None:
+    """Gọi TRƯỚC khi vẽ ô nhập có khóa `key`: khôi phục giá trị đã chọn lần trước."""
+    if key not in st.session_state:
+        st.session_state[key] = st.session_state.get("_keep_" + key, default)
+
+
+def remember(key: str) -> None:
+    """Gọi SAU khi vẽ ô nhập: lưu giá trị hiện tại để dùng khi quay lại trang."""
+    if key in st.session_state:
+        st.session_state["_keep_" + key] = st.session_state[key]

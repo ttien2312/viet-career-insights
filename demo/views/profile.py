@@ -17,7 +17,7 @@ def render():
     nat = state.national_stats()
     cats = nat["category_clean"].tolist()
 
-    st.session_state.setdefault("profile_cat", "Công nghệ thông tin" if "Công nghệ thông tin" in cats else cats[0])
+    state.keep("profile_cat", "Công nghệ thông tin" if "Công nghệ thông tin" in cats else cats[0])
     if st.session_state["profile_cat"] not in cats:
         st.session_state["profile_cat"] = cats[0]
 
@@ -25,6 +25,7 @@ def render():
             "Số việc làm, lương theo từng mức kinh nghiệm, kỹ năng nhà tuyển dụng cần và ngành học nên chọn.")
     cat = st.selectbox("Chọn nhóm nghề", cats, key="profile_cat",
                        format_func=lambda c: f"{c}  ·  {du.fmt_int(nat.set_index('category_clean').loc[c, 'n'])} tin")
+    state.remember("profile_cat")
     ui.filter_chips(f, applies="no_cat")
 
     d = jobs_all[jobs_all["category_clean"] == cat]

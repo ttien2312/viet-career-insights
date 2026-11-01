@@ -83,8 +83,10 @@ def render():
 
     # --- Xếp hạng -----------------------------------------------------------
     ui.section("Xếp hạng nhóm nghề", "Chọn chỉ tiêu để xếp hạng lại; bấm vào một thanh để mở hồ sơ nghề.")
-    metric = st.segmented_control("Xếp theo", list(charts.RANK_METRICS), default="Số tin tuyển dụng",
-                                  key="ov_metric", label_visibility="collapsed") or "Số tin tuyển dụng"
+    state.keep("ov_metric", "Số tin tuyển dụng")
+    metric = st.segmented_control("Xếp theo", list(charts.RANK_METRICS), key="ov_metric",
+                                  label_visibility="collapsed") or "Số tin tuyển dụng"
+    state.remember("ov_metric")
     col, _, unit = charts.RANK_METRICS[metric]
     ev2 = ui.chart(charts.ranked_bar, stats, metric, hl, key="ov_rank", n=s["n"], unit=unit,
                    extra="Lương: trung điểm khoảng lương trong tin; ô có dưới 10 tin có lương được bỏ qua. Không xếp hạng “Nhóm nghề khác”.",
