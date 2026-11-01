@@ -1,0 +1,5 @@
+# Thư viện cho demo Streamlit (demo/app.py) và hàm vẽ của data_visualization
+streamlit>=1.50,<2
+plotly>=5.20
+pandas>=2.0
+numpy>=1.24
