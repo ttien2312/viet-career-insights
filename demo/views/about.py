@@ -58,5 +58,8 @@ Ví dụ: chỉ bật *Lương khởi điểm* (trọng số 3) và *Dễ vào n
 - Bảng ngành học và thẻ sở thích là bản nháp của nhóm, cần đối chiếu nguồn chính thức.
 """)
     ui.section("Chất lượng dữ liệu trước và sau xử lý")
-    st.dataframe(quality.astype(object).where(quality.notna(), "—"), hide_index=True, key="quality_table")
+    q = quality.copy()
+    for c in q.columns[1:]:
+        q[c] = q[c].map(du.fmt_int)  # chuỗi thống nhất: 48.092; ô trống = "—"
+    st.dataframe(q, hide_index=True, key="quality_table")
     st.caption("Nhóm 15 – Trực quan hóa thông tin, HKI 2026–2027. Demo: Streamlit + Plotly.")

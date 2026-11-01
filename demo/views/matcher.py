@@ -22,20 +22,25 @@ def render():
     with left:
         with st.container(border=True):
             st.markdown("**1. Bạn thích / giỏi điều gì?**")
+            for k, v in {"m_tags": [], "m_w_interest": 5, "m_w_salary": 3, "m_w_demand": 3,
+                         "m_w_entry": 3, "m_w_growth": 2, "m_loc": "Toàn quốc"}.items():
+                state.keep(k, v)
             chosen = st.pills("Sở thích", tag_list, selection_mode="multi", key="m_tags",
                               label_visibility="collapsed")
             st.markdown("**2. Bạn coi trọng điều gì?** (0 = không quan tâm, 5 = rất quan trọng)")
             w = {
-                "interest": st.slider("Hợp sở thích", 0, 5, 5, key="m_w_interest"),
-                "entry_salary": st.slider("Lương khởi điểm cao", 0, 5, 3, key="m_w_salary"),
-                "demand": st.slider("Nhiều cơ hội việc làm", 0, 5, 3, key="m_w_demand"),
-                "entry_pct": st.slider("Dễ vào nghề khi chưa có kinh nghiệm", 0, 5, 3, key="m_w_entry"),
-                "growth": st.slider("Lương tăng nhanh theo kinh nghiệm", 0, 5, 2, key="m_w_growth"),
+                "interest": st.slider("Hợp sở thích", 0, 5, key="m_w_interest"),
+                "entry_salary": st.slider("Lương khởi điểm cao", 0, 5, key="m_w_salary"),
+                "demand": st.slider("Nhiều cơ hội việc làm", 0, 5, key="m_w_demand"),
+                "entry_pct": st.slider("Dễ vào nghề khi chưa có kinh nghiệm", 0, 5, key="m_w_entry"),
+                "growth": st.slider("Lương tăng nhanh theo kinh nghiệm", 0, 5, key="m_w_growth"),
             }
             st.markdown("**3. Bạn muốn làm việc ở đâu?**")
             top_locs = locs.value_counts().head(25).index.tolist()
             where = st.selectbox("Nơi làm việc", ["Toàn quốc"] + top_locs, key="m_loc",
                                  label_visibility="collapsed")
+            for k in ["m_tags", "m_w_interest", "m_w_salary", "m_w_demand", "m_w_entry", "m_w_growth", "m_loc"]:
+                state.remember(k)
 
     nat_stats = state.national_stats()
     if where == "Toàn quốc":
